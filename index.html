@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>红狐</title>
+  <link rel="stylesheet" type="text/css" href="styles/common.css">
+  <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.css">
+</head>
+<style>
+</style>
+
+<body>
+  <ul id="fullpageMenu">
+    <li data-menuanchor='page1' class="active"><a href="#page1" id="time_box">1 section</a></li>
+    <li data-menuanchor='page2'><a href="#page2">2 section</a></li>
+    <li data-menuanchor='page3'><a href="#page3">3 section</a></li>
+    <li data-menuanchor='page4'><a href="#page4">4 section</a></li>
+  </ul>
+  <!-- <div id="header">header</div> -->
+  <div id="fullpage">
+    <div class="section">
+      <div class="slide">Slide 1 &nbsp;</div>
+      <div class="slide">Slide 2</div>
+      <div class="slide">Slide 3</div>
+      <div class="slide">Slide 4</div>
+    </div>
+  </div>
+  <script src="libarys/require.js" data-main="scripts/main"></script>
+  <script type="text/javascript">
+    (function () {
+      var myDate = new Date(),
+        year = myDate.getFullYear(), //获取完整的年份(4位,1970-????)
+        month = myDate.getMonth(), //获取当前月份(0-11,0代表1月)
+        day = myDate.getDate(), //获取当前日(1-31)
+        week = myDate.getDay(), //获取当前星期X(0-6,0代表星期天)
+        suffix = '';
+      switch (week) {
+        case 0:
+          suffix = '日';
+          break;
+        case 1:
+          suffix = '一';
+          break;
+        case 2:
+          suffix = '二';
+          break;
+        case 3:
+          suffix = '三';
+          break;
+        case 4:
+          suffix = '四';
+          break;
+        case 5:
+          suffix = '五';
+          break;
+        case 6:
+          suffix = '六';
+          break;
+        default:
+          break;
+      }
+    })();
+  </script>
+</body>
+
+</html>
