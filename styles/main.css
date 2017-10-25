@@ -10,20 +10,20 @@ p {
   border-radius: 50%;
   background: rgba(218, 36, 28, 0.4);
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
   position: absolute;
   opacity: 1;
 }
 
 .rippleEffect {
   -webkit-animation: rippleDrop .6s linear;
-          animation: rippleDrop .6s linear;
+  animation: rippleDrop .6s linear;
 }
 
 @-webkit-keyframes rippleDrop {
   100% {
     -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
   }
 }
@@ -31,14 +31,24 @@ p {
 @keyframes rippleDrop {
   100% {
     -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
   }
 }
 
-/*===================================================================
-=                             nav start                             =
-===================================================================*/
+
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: auto;
+}
+
+
+
+
+/*============================================================================
+=                                  nav start                                 =
+=============================================================================*/
 
 #fullpageMenu {
   height: 60px;
@@ -51,7 +61,15 @@ p {
 #fullpageMenu li {
   height: 60px;
 }
+
+
+
+
+
+
+
 /* logo */
+
 #fullpageMenu li.logo {
   position: relative;
   width: 140px;
@@ -62,11 +80,18 @@ p {
 #fullpageMenu li.logo img {
   width: 100%;
 }
+
+
+
+
+
+
+
 /* 菜单按钮 */
+
 #fullpageMenu li.nav-menu {
   width: 100px;
-  position:relative;
-  // overflow:hidden;
+  position: relative; // overflow:hidden;
 }
 
 #fullpageMenu li.nav-menu a {
@@ -79,33 +104,77 @@ p {
 
 #fullpageMenu li.slide-line {
   width: 100px;
-  height:3px;
+  height: 3px;
   background-color: red;
-  position:absolute;
+  position: absolute;
   opacity: 0;
   top: 57px;
 }
 
+
+
+
+
+
+/*============================================================================
+=                             index_page start                               =
+=============================================================================*/
 
 #index_page {
   background: url('../images/index_bg.png') no-repeat center center;
   background-size: cover;
 }
 
+
+
+
+
+
+/*============================================================================
+=                             website_page start                             =
+=============================================================================*/
+
 #website_page {
   background: url('../images/website_bg.png') no-repeat center center;
   background-size: cover;
 }
+
+
+
+
+
+
+/*============================================================================
+=                             seo_page start                                 =
+=============================================================================*/
 
 #seo_page {
   background: url('../images/seo_bg.png') no-repeat center center;
   background-size: cover;
 }
 
+
+
+
+
+
+/*============================================================================
+=                             case_page start                                =
+============================================================================*/
+
 #case_page {
   background: url('../images/case_bg.png') no-repeat center center;
   background-size: cover;
 }
+
+
+
+
+
+
+/*============================================================================
+=                            contact_page start                              =
+============================================================================*/
 
 #contact_page {
   background: url('../images/contact_bg.png') no-repeat center center;

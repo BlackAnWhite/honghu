@@ -25,8 +25,12 @@
     initNav: function(time) { //初始化导航下线条的位置
       this.pageIndex = location.hash.split('/').length > 1 ? (function() {
         var temp;
+        if(!location.hash.split('/')[1]) return 0;
         switch (location.hash.split('/')[1]) {
           case '1':
+            temp = 1;
+            break;
+          case '2':
             temp = 1;
             break;
           case '3':
@@ -41,6 +45,7 @@
         }
         return temp;
       })() : 0;
+      // console.log(this.pageIndex);
       var navLineCurrentLeft = $("#fullpageMenu .nav-menu").eq(this.pageIndex).offset().left;
       $('#fullpageMenu li.slide-line').css({
         opacity: 1
@@ -48,7 +53,7 @@
         left: navLineCurrentLeft
       }, time || 0);
     },
-    
+
     addListener: function() {
       var self = this;
       //调用fullpage插件
@@ -64,9 +69,12 @@
         },
         onSlideLeave: function() { //滑块离开动画开始
           self.allowMoveSlider = false;
+          setTimeout(function(){
+            self.initNav(400);
+          },10);
         },
         afterResize: function() {
-          self.initNav(500);
+          self.initNav(400);
         }
       });
 
