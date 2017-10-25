@@ -3,22 +3,24 @@
  * @DateTime:    2017-10-17 15:35:39
  * @Description: application entry
  */
-
 require.config({
   baseUrl: './',
   paths: {
     'jquery': 'libarys/jquery.min',
     'fullpage': 'libarys/jquery.fullpage',
-    'sence': 'scripts/sence'
+    'swiper': 'libarys/swiper.jquery.min',
+    'scene': 'scripts/scene',
+    'nav': 'scripts/nav'
   }
 });
 
-define(['jquery', 'fullpage', 'sence'], function($, fullpage, Sence) {
+define(['jquery', 'fullpage', 'nav', 'scene', 'swiper'], function($, fullpage, nav, Scene, swiper) {
   $(function() {
-    new Sence();
+    //建立场景
+    new Scene(nav);
   });
 });
-var a = 6;
+
 (function() {
   //simple inheritance By John Resig
   var initializing = false,

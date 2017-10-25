@@ -1,54 +1,107 @@
 * {
+  /*取消ios链接点击之后的遮罩层*/
   -webkit-tap-highlight-color: transparent;
+  /*webkit 表单元素默认外观重置*/
   -webkit-appearance: none;
+  /*-webkit-touch-callout: none; 禁止长按图片后出现下载选项*/
 }
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
   margin: 0;
   padding: 0;
 }
 
-fieldset, img {
+fieldset,
+img {
   border: 0;
 }
+
 
 :focus {
   outline: 0;
 }
 
-address, caption, cite, code, dfn, th, var, optgroup {
+address,
+caption,
+cite,
+code,
+dfn,
+th,
+var,
+optgroup {
   font-style: normal;
   font-weight: normal;
 }
 
-abbr, acronym {
+abbr,
+acronym {
   border: 0;
   font-variant: normal;
 }
 
-input, button, textarea, select, optgroup, option {
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
   font-family: inherit;
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;
 }
 
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-caption, th {
+caption,
+th {
   text-align: left;
 }
 
-:link, :visited, ins {
+
+
+
+:link,
+:visited,
+ins {
   text-decoration: none;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
+
 
 .clear-fix:after {
   content: '';
@@ -64,6 +117,7 @@ ul, ol {
 }
 
 .slow {
+  -webkit-transition: all ease .5s;
   transition: all ease .5s;
 }
 
@@ -74,8 +128,4 @@ ul, ol {
   top: 0;
   bottom: 0;
   margin: auto;
-}
-
-p, a, span, h1, h2, h3, h4, h5, h6 {
-  font-family: 'Microsoft YaHei';
 }

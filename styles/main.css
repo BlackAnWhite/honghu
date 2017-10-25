@@ -1,16 +1,113 @@
-.container {
-  max-width: 1200px;
-  height: 300px;
+li,
+a,
+p {
+  font-family: 'Microsoft YaHei'
 }
-.container a {
-  text-decoration: none;
-  color: #eee;
+
+.ripple {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(218, 36, 28, 0.4);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  position: absolute;
+  opacity: 1;
 }
-.container a:hover {
+
+.rippleEffect {
+  -webkit-animation: rippleDrop .6s linear;
+          animation: rippleDrop .6s linear;
+}
+
+@-webkit-keyframes rippleDrop {
+  100% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes rippleDrop {
+  100% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/*===================================================================
+=                             nav start                             =
+===================================================================*/
+
+#fullpageMenu {
+  height: 60px;
+  box-shadow: 1px 2px 5px #333;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#fullpageMenu li {
+  height: 60px;
+}
+/* logo */
+#fullpageMenu li.logo {
+  position: relative;
+  width: 140px;
+  overflow: hidden;
+  margin: 0 60px;
+}
+
+#fullpageMenu li.logo img {
+  width: 100%;
+}
+/* 菜单按钮 */
+#fullpageMenu li.nav-menu {
+  width: 100px;
+  position:relative;
+  // overflow:hidden;
+}
+
+#fullpageMenu li.nav-menu a {
+  text-align: center;
+  font-size: 14px;
+  display: block;
   color: #333;
-  background-color: #fff;
-  animation-direction: alternate;
-  transition: all ease .1s;
-  font-size: 30px;
-  font-weight: normal;
+  line-height: 60px;
+}
+
+#fullpageMenu li.slide-line {
+  width: 100px;
+  height:3px;
+  background-color: red;
+  position:absolute;
+  opacity: 0;
+  top: 57px;
+}
+
+
+#index_page {
+  background: url('../images/index_bg.png') no-repeat center center;
+  background-size: cover;
+}
+
+#website_page {
+  background: url('../images/website_bg.png') no-repeat center center;
+  background-size: cover;
+}
+
+#seo_page {
+  background: url('../images/seo_bg.png') no-repeat center center;
+  background-size: cover;
+}
+
+#case_page {
+  background: url('../images/case_bg.png') no-repeat center center;
+  background-size: cover;
+}
+
+#contact_page {
+  background: url('../images/contact_bg.png') no-repeat center center;
+  background-size: cover;
 }
