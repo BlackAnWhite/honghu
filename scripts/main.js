@@ -18,6 +18,44 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper'], function($, fullpage, n
   $(function() {
     //建立场景
     new Scene(nav);
+
+
+    //index_page 按钮触碰效果
+    $('#index_page .lside .btn-group .btn').hover(function(){
+      $(this).prev().css({
+        'transform':'scale(1.2)'
+      });
+    },function(){
+      $(this).prev().css({
+        'transform':'scale(1)'
+      });
+    });
+
+    var timer;
+    $(window).on('resize',function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+
+        //大小屏图片切换
+        if($(window).width() < 1200){
+          $('.media-img').each(function(index,item){
+            if(!item.flag || item.flag != 'xs'){
+              item.src = $(item).attr('data-xs-src');
+              item.flag = 'xs';
+            }
+          });
+        }else{
+          $('.media-img').each(function(index,item){
+            if(!item.flag || item.flag != 'lg'){
+              item.src = $(item).attr('data-lg-src');
+              item.flag = 'lg';
+            }
+          });
+        }
+
+      },100);
+    }).trigger('resize');
+
   });
 });
 

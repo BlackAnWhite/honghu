@@ -45,13 +45,17 @@
         }
         return temp;
       })() : 0;
-      // console.log(this.pageIndex);
+      
       var navLineCurrentLeft = $("#fullpageMenu .nav-menu").eq(this.pageIndex).offset().left;
       $('#fullpageMenu li.slide-line').css({
         opacity: 1
       }).animate({
         left: navLineCurrentLeft
       }, time || 0);
+    },
+
+    renderAnimate:function(page){
+
     },
 
     addListener: function() {
@@ -86,7 +90,7 @@
           //向下滚动滚轮
           $.fn.fullpage.moveSlideRight();
         })() : (function() {
-          //想上滚动滚轮
+          //向上滚动滚轮
           $.fn.fullpage.moveSlideLeft();
         })();
       });
