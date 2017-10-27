@@ -15,56 +15,74 @@ require.config({
   }
 });
 
-define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel'], function($, fullpage, nav, Scene, swiper, carousel) {
-  $(function() {
-    //建立场景
-    new Scene(nav);
-    carousel();
+define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel'],
+  function($, fullpage, nav, Scene, Swiper, carousel) {
+    $(function() {
+      //建立场景
+      new Scene(nav);
 
-    //index_page 按钮触碰效果
-    $('#index_page .lside .btn-group .btn').hover(function() {
-      $(this).prev().css({
-        'transform': 'scale(1.2)'
+      //index_page 按钮触碰效果
+      $('#index_page .lside .btn-group .btn').hover(function() {
+        $(this).prev().css({
+          'transform': 'scale(1.2)'
+        });
+      }, function() {
+        $(this).prev().css({
+          'transform': 'scale(1)'
+        });
       });
-    }, function() {
-      $(this).prev().css({
-        'transform': 'scale(1)'
-      });
+
+      var timer;
+      $(window).on('resize', function() {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+          var windowWidth = $(window).width(),
+            windowHeight = $(window).height(),
+            containerHeight = $('#case_page .container').height(),
+            carouselBox = $('#case_page .carousel');
+
+          //大小屏图片切换
+          if (windowWidth < 1200) {
+            $('.media-img').each(function(index, item) {
+              if (!item.flag || item.flag != 'xs') {
+                item.src = $(item).attr('data-xs-src');
+                item.flag = 'xs';
+              }
+            });
+          } else {
+            $('.media-img').each(function(index, item) {
+              if (!item.flag || item.flag != 'lg') {
+                item.src = $(item).attr('data-lg-src');
+                item.flag = 'lg';
+              }
+            });
+          }
+
+          //案例响应式
+          if (windowWidth < 992) {
+            $('.swiper-container')[0].style.height = windowHeight - 60 + 'px';
+            var iSwiper = new Swiper('#i-c1', {
+              scrollbar: '.swiper-scrollbar',
+              direction: 'vertical',
+              slidesPerView: 'auto',
+              freeMode: true,
+              freeModeMomentum: false,
+              mousewheelControl: true,
+              mousewheelSensitivity: 0.5
+            });
+          } else {
+            console.log(carousel);
+            carousel();
+            //案例上下居中
+            carouselBox.css('padding-top', (containerHeight - carouselBox.outerHeight()) / 2 - 32);
+          }
+
+
+        }, 100);
+      }).trigger('resize');
+
     });
-
-    var timer;
-    $(window).on('resize', function() {
-      clearTimeout(timer);
-      timer = setTimeout(function() {
-        var windowWidth = $(window).width(),
-          containerHeight = $('#case_page .container').height(),
-          carouselBox = $('#case_page .carousel');
-        //大小屏图片切换
-        if ( windowWidth < 1200) {
-          $('.media-img').each(function(index, item) {
-            if (!item.flag || item.flag != 'xs') {
-              item.src = $(item).attr('data-xs-src');
-              item.flag = 'xs';
-            }
-          });
-        } else {
-          $('.media-img').each(function(index, item) {
-            if (!item.flag || item.flag != 'lg') {
-              item.src = $(item).attr('data-lg-src');
-              item.flag = 'lg';
-            }
-          });
-        }
-
-        //案例上下居中
-        carouselBox.css('padding-top',(containerHeight-carouselBox.outerHeight())/2-32);
-        // .outerHeight()
-
-      }, 100);
-    }).trigger('resize');
-
   });
-});
 
 (function() {
   //simple inheritance By John Resig

@@ -46,6 +46,8 @@ p {
 
 
 
+
+
 /*============================================================================
 =                                  nav start                                 =
 =============================================================================*/
@@ -101,6 +103,7 @@ p {
   opacity: 0;
   top: 57px;
 }
+
 
 
 
@@ -347,6 +350,8 @@ p {
 
 
 
+
+
 /*============================================================================
 =                             website_page start                             =
 =============================================================================*/
@@ -424,6 +429,8 @@ p {
 
 
 
+
+
 /*============================================================================
 =                             seo_page start                                 =
 =============================================================================*/
@@ -432,6 +439,7 @@ p {
   background: url('../images/seo_bg.png') no-repeat center center;
   background-size: cover;
 }
+
 
 
 
@@ -521,6 +529,42 @@ p {
   padding: 5px 10px;
 }
 
+
+#case_page .swiper-container {
+  margin: 0 auto;
+  width: 100%;
+  margin-top: -54px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px 8px;
+  background-color: #fff;
+  display: none;
+  overflow: hidden;
+}
+
+#case_page .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+}
+
+#case_page #i-c1 .swiper-slide {
+  height: auto;
+}
+
+#case_page .swiper-slide>img {
+  width: 100%;
+}
+
+@media (max-width:992px) {
+  #case_page .container {
+    display: none;
+  }
+
+  #case_page .swiper-container {
+    display: block;
+  }
+}
 
 
 
