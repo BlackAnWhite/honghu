@@ -10,50 +10,57 @@ require.config({
     'fullpage': 'libarys/jquery.fullpage',
     'swiper': 'libarys/swiper.jquery.min',
     'scene': 'scripts/scene',
-    'nav': 'scripts/nav'
+    'nav': 'scripts/nav',
+    'carousel': 'scripts/carousel'
   }
 });
 
-define(['jquery', 'fullpage', 'nav', 'scene', 'swiper'], function($, fullpage, nav, Scene, swiper) {
+define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel'], function($, fullpage, nav, Scene, swiper, carousel) {
   $(function() {
     //建立场景
     new Scene(nav);
-
+    carousel();
 
     //index_page 按钮触碰效果
-    $('#index_page .lside .btn-group .btn').hover(function(){
+    $('#index_page .lside .btn-group .btn').hover(function() {
       $(this).prev().css({
-        'transform':'scale(1.2)'
+        'transform': 'scale(1.2)'
       });
-    },function(){
+    }, function() {
       $(this).prev().css({
-        'transform':'scale(1)'
+        'transform': 'scale(1)'
       });
     });
 
     var timer;
-    $(window).on('resize',function(){
+    $(window).on('resize', function() {
       clearTimeout(timer);
-      timer = setTimeout(function(){
-
+      timer = setTimeout(function() {
+        var windowWidth = $(window).width(),
+          containerHeight = $('#case_page .container').height(),
+          carouselBox = $('#case_page .carousel');
         //大小屏图片切换
-        if($(window).width() < 1200){
-          $('.media-img').each(function(index,item){
-            if(!item.flag || item.flag != 'xs'){
+        if ( windowWidth < 1200) {
+          $('.media-img').each(function(index, item) {
+            if (!item.flag || item.flag != 'xs') {
               item.src = $(item).attr('data-xs-src');
               item.flag = 'xs';
             }
           });
-        }else{
-          $('.media-img').each(function(index,item){
-            if(!item.flag || item.flag != 'lg'){
+        } else {
+          $('.media-img').each(function(index, item) {
+            if (!item.flag || item.flag != 'lg') {
               item.src = $(item).attr('data-lg-src');
               item.flag = 'lg';
             }
           });
         }
 
-      },100);
+        //案例上下居中
+        carouselBox.css('padding-top',(containerHeight-carouselBox.outerHeight())/2-32);
+        // .outerHeight()
+
+      }, 100);
     }).trigger('resize');
 
   });

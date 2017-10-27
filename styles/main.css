@@ -36,7 +36,6 @@ p {
   }
 }
 
-
 .container {
   position: relative;
   width: 100%;
@@ -47,33 +46,20 @@ p {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*============================================================================
 =                                  nav start                                 =
 =============================================================================*/
 
 #fullpageMenu {
   height: 60px;
+  -webkit-box-shadow: 1px 2px 5px #333;
   box-shadow: 1px 2px 5px #333;
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -115,27 +101,6 @@ p {
   opacity: 0;
   top: 57px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -202,6 +167,7 @@ p {
 #index_page .lside .btn-group .icon {
   display: block;
   text-align: center;
+  -webkit-transition: all ease .4s;
   transition: all ease .4s;
 }
 
@@ -234,6 +200,7 @@ p {
   background-color: #fff;
   position: absolute;
   opacity: 0;
+  -webkit-transition: all ease .4s;
   transition: all ease .4s;
 }
 
@@ -300,7 +267,6 @@ p {
   margin-left: 0;
 }
 
-
 #index_page .rside {
   right: 0;
   background-color: rgba(0, 0, 0, .4);
@@ -320,13 +286,11 @@ p {
 }
 
 @media(max-width:1200px) {
-
   #index_page .lside {
     bottom: 0;
     height: 60%;
     width: 100%;
   }
-
   #index_page .rside {
     width: 82%;
     margin: 0 auto;
@@ -360,7 +324,6 @@ p {
   #index_page .lside {
     height: 70%;
   }
-
   #index_page .rside {
     height: 30%;
   }
@@ -380,22 +343,6 @@ p {
     max-width: 350px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -460,38 +407,19 @@ p {
     top: 0;
     background-color: rgba(0, 0, 0, 0);
   }
-
   #website_page .rside {
     height: 60%;
     bottom: 0;
   }
-
   #website_page .lside img {
     top: initial;
     bottom: 30px;
   }
-
   #website_page .rside img {
     top: 50px;
     bottom: initial;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -509,56 +437,89 @@ p {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*============================================================================
 =                             case_page start                                =
 ============================================================================*/
 
 #case_page {
-  background: url('../images/case_bg.png') no-repeat center center;
-  background-size: cover;
+  // background: url('../images/case_bg.png') no-repeat center center;
+  // background-size: cover;
 }
 
 #case_page .container {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  
 }
 
+#case_page .carousel {
+  padding: 20px;
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
 
+#case_page .carousel>* {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
 
+#case_page .carousel figure {
+  margin: 0;
+  width: 60%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
 
+#case_page .carousel figure img {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 0px;
+}
 
+#case_page .carousel figure img:not(:first-of-type) {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 
+#case_page .carousel nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 20px 0 0;
+}
 
-
-
-
-
-
-
-
-
-
-
+#case_page .carousel nav button {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #333;
+  background: none;
+  border: 1px solid;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+}
 
 
 
