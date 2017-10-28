@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.css">
   <link rel="stylesheet" href="styles/animate.min.css">
   <link rel="stylesheet" href="styles/main.css">
+  <script src="libarys/three.min.js"></script>
 </head>
 
 <body>
@@ -71,21 +72,7 @@
       <section class="slide" id="case_page">
         <section class="container">
           <div class="carousel" data-gap="10">
-            <figure>
-              <img src="images/1.jpg" alt="">
-              <img src="images/2.jpg" alt="">
-              <!-- Fira Code -->
-              <img src="images/3.jpg" alt="">
-              <img src="images/4.jpg" alt="">
-              <img src="images/5.jpg" alt="">
-              <img src="images/6.jpg" alt="">
-              <img src="images/7.jpg" alt="">
-              <img src="images/8.jpg" alt="">
-              <img src="images/1.jpg" alt="">
-              <img src="images/2.jpg" alt="">
-              <img src="images/3.jpg" alt="">
-              <img src="images/4.jpg" alt="">
-            </figure>
+            <figure class="pc-case"></figure>
             <nav>
               <button class="nav prev">Prev</button>
               <button class="nav next">Next</button>
@@ -94,20 +81,7 @@
         </section>
         <div class="swiper-container" id="i-c1">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="images/1.jpg" alt="">
-              <img src="images/2.jpg" alt="">
-              <img src="images/3.jpg" alt="">
-              <img src="images/4.jpg" alt="">
-              <img src="images/5.jpg" alt="">
-              <img src="images/6.jpg" alt="">
-              <img src="images/7.jpg" alt="">
-              <img src="images/8.jpg" alt="">
-              <img src="images/1.jpg" alt="">
-              <img src="images/2.jpg" alt="">
-              <img src="images/3.jpg" alt="">
-              <img src="images/4.jpg" alt="">
-            </div>
+            <div class="swiper-slide mobile-case"></div>
           </div>
           <div class="swiper-scrollbar" style="opacity: 0;">
             <div class="swiper-scrollbar-drag" style="height: 20.4px;"></div>
@@ -115,9 +89,37 @@
         </div>
       </section>
       <section class="slide" id="contact_page">
+        <section class="container">
+          <form action="#">
+            <h2>leave a message for us <em></em><span>留言</span>给我们</h2>
+            <input type="text" name="" id="" placeholder="请输入您的姓名">
+            <input type="tel" name="" id="" placeholder="请输入您的联系方式">
+            <textarea placeholder="请输入您的项目基本信息"></textarea>
+            <input type="submit" value="提交信息">
+          </form>
+        </section>
       </section>
     </section>
   </section>
+  <!--=========================
+  =            pop            =
+  ==========================-->
+  <section class="pop">
+    <section class="closeBtn"></section>
+    <div class="swiper-container" id="pop_content">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <h2 class="case-content-title"></h2>
+          <p class="case-content-desc"></p>
+          <div class="case-content-img"></div>
+        </div>
+      </div>
+      <div class="swiper-scrollbar" style="opacity: 0;">
+        <div class="swiper-scrollbar-drag" style="height: 20.4px;"></div>
+      </div>
+    </div>
+  </section>
+  <!--====  End of pop  ====-->
   <script src="libarys/require.js" data-main="scripts/main"></script>
 </body>
 

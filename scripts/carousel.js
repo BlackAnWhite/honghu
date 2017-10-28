@@ -3,9 +3,8 @@
  * @DateTime:    2017-10-27 10:33:58
  * @Description: 环形轮播效果
  */
-'use strict';
-define(function() {
-  return function() {
+define(['jquery'], function($) {
+  return function(showCase,pop,title,desc,contentimg) {
     var carousels = document.querySelectorAll('.carousel');
     for (var i = 0; i < carousels.length; i++) carousel(carousels[i]);
 
@@ -35,18 +34,20 @@ define(function() {
         rotateCarousel(currImage);
       }, true);
 
-      //为左右图片添加点击事件
+      //当点击的图片为当前显示图片的左右时 进行切换动作
       for (var i = 0; i < n; i++) {
         images[i].index = i;
         images[i].addEventListener('click', function(e) {
+
           var slideWidth = (windowWidth - currImageWidth) / 2;
-          if (this.index != currImage) {
-            if (e.pageX < slideWidth) {
-              currImage--;
-            } else if (e.pageX > slideWidth + currImageWidth) {
-              currImage++;
-            }
+          if (e.pageX < slideWidth) {
+            currImage--;
+          } else if (e.pageX > slideWidth + currImageWidth) {
+            currImage++;
+          } else {
+            showCase(pop,title,desc,contentimg,$(this));
           }
+
           rotateCarousel(currImage);
         });
       }
@@ -65,14 +66,10 @@ define(function() {
         rotateCarousel(currImage);
       }
 
-      /**
-       * [rotateCarousel 旋转动作]
-       * @param  {[type]} imageIndex [description]
-       * @return {[void]}            [无返回值]
-       */
+      //旋转动作
       function rotateCarousel(imageIndex) {
         figure.style.transform = 'rotateY(' + imageIndex * -theta + 'rad)';
       }
     }
-  }
+  };
 });

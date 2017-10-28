@@ -25,7 +25,7 @@
     initNav: function(time) { //初始化导航下线条的位置
       this.pageIndex = location.hash.split('/').length > 1 ? (function() {
         var temp;
-        if(!location.hash.split('/')[1]) return 0;
+        if (!location.hash.split('/')[1]) return 0;
         switch (location.hash.split('/')[1]) {
           case '1':
             temp = 1;
@@ -45,7 +45,7 @@
         }
         return temp;
       })() : 0;
-      
+
       var navLineCurrentLeft = $("#fullpageMenu .nav-menu").eq(this.pageIndex).offset().left;
       $('#fullpageMenu li.slide-line').css({
         opacity: 1
@@ -54,7 +54,7 @@
       }, time || 0);
     },
 
-    renderAnimate:function(page){
+    renderAnimate: function(page) {
 
     },
 
@@ -73,9 +73,9 @@
         },
         onSlideLeave: function() { //滑块离开动画开始
           self.allowMoveSlider = false;
-          setTimeout(function(){
+          setTimeout(function() {
             self.initNav(400);
-          },10);
+          }, 10);
         },
         afterResize: function() {
           self.initNav(400);
@@ -83,17 +83,18 @@
       });
 
       //设置鼠标滚动监听
-      $(window).on('mousewheel', function(e) {
+      $('#fullpage').on('mousewheel', function(e) {
         e.preventDefault();
         var mousewheelDirection = e.originalEvent.deltaY > 0 ? 'down' : 'up';
-        if (self.allowMoveSlider) mousewheelDirection === 'down' ? (function() {
-          //向下滚动滚轮
-          $.fn.fullpage.moveSlideRight();
-        })() : (function() {
-          //向上滚动滚轮
-          $.fn.fullpage.moveSlideLeft();
-        })();
+        if (self.allowMoveSlider){
+          if(mousewheelDirection === 'down'){
+            $.fn.fullpage.moveSlideRight();
+          }else{
+            $.fn.fullpage.moveSlideLeft();
+          }
+        }
+         
       });
     }
-  })
+  });
 });
