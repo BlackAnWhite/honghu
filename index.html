@@ -10,10 +10,22 @@
   <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.css">
   <link rel="stylesheet" href="styles/animate.min.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="libarys/three.min.js"></script>
 </head>
 
 <body>
+  <!--===================================
+  =            loading layer            =
+  ====================================-->
+  <section class="loading-layer">
+    <div class="flip-txt-loading middle-center">
+      <span>正</span><span>在</span><span>加</span><span>载</span><span>中</span><span>.</span><span>.</span><span>.</span>
+    </div>
+  </section>
+  <script src="libarys/three.min.js"></script>
+  <!--====  End of loading layer  ====-->
+  <!--============================
+  =            header            =
+  =============================-->
   <ul id="fullpageMenu">
     <li class="logo"><img class="middle-center" src="images/logo.png" alt=""></li>
     <li data-menuanchor='page1' class="active nav-menu"><a href="#page1/0" id="time_box">首页</a></li>
@@ -22,6 +34,7 @@
     <li data-menuanchor='page4' class="nav-menu"><a href="#page1/4">联系</a></li>
     <li class="slide-line"></li>
   </ul>
+  <!--====  End of header  ====-->
   <section id="fullpage">
     <section class="section">
       <!--==================================
@@ -56,6 +69,9 @@
         </section>
       </section>
       <!--====  End of index_page  ====-->
+      <!--==================================
+      =            website page            =
+      ===================================-->
       <section class="slide" id="website_page">
         <section class="container">
           <section class="lside">
@@ -66,9 +82,17 @@
           </section>
         </section>
       </section>
+      <!--====  End of website page  ====-->
+      <!--==============================
+      =            seo page            =
+      ===============================-->
       <section class="slide" id="seo_page">
         SEO
       </section>
+      <!--====  End of seo page  ====-->
+      <!--===============================
+      =            case page            =
+      ================================-->
       <section class="slide" id="case_page">
         <section class="container">
           <div class="carousel" data-gap="10">
@@ -88,9 +112,13 @@
           </div>
         </div>
       </section>
+      <!--====  End of case page  ====-->
+      <!--=============================
+      =            contact            =
+      ==============================-->
       <section class="slide" id="contact_page">
         <section class="container">
-          <form action="#">
+          <form action="#" class="middle-center">
             <h2>leave a message for us <em></em><span>留言</span>给我们</h2>
             <input type="text" name="" id="" placeholder="请输入您的姓名">
             <input type="tel" name="" id="" placeholder="请输入您的联系方式">
@@ -99,6 +127,7 @@
           </form>
         </section>
       </section>
+      <!--====  End of contact  ====-->
     </section>
   </section>
   <!--=========================

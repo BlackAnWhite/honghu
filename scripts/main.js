@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 /**
  * @Author:      allenAugustine
  * @DateTime:    2017-10-17 15:35:39
@@ -13,14 +14,19 @@ require.config({
     'nav': 'scripts/nav',
     'carousel': 'scripts/carousel',
     'ware': 'scripts/ware',
-    'staticResource': 'scripts/staticResource'
+    'data': 'scripts/data'
   }
 });
 
-define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'staticResource'],
-  function($, fullpage, nav, Scene, Swiper, carousel, ware, StaticResource) {
+define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'data'],
+  function($, fullpage, nav, Scene, Swiper, carousel, ware, data) {
+    window.onload = function() {
+      setTimeout(function() {
+        document.querySelector('.loading-layer').style.display = "none";
+      }, 100);
+    };
     //展示案例详情
-    function showCase(pop, title, desc,contentimg, that) {
+    function showCase(pop, title, desc, contentimg, that) {
       pop.css('z-index', 10000);
       pop.animate({ 'opacity': 1 });
       title.html(that.data('name'));
@@ -46,10 +52,7 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'sta
       new Scene(nav);
       ware('#index_page .container', 0xff0000);
       $('#pop_content')[0].style.height = $(window).height() - 50 + 'px';
-      $('#pop_content').on('mousewheel', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-      });
+
 
       /*=================================================================
       =                     pop 关闭按钮点击事件                        =
@@ -112,29 +115,33 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'sta
           /*=================================================================
           =                            案例响应式                           =
           =================================================================*/
-          new StaticResource('case.json', function(dom) {
-            if (windowWidth < 992) {
-              $('.mobile-case').html(dom);
-              $('.swiper-container')[0].style.height = windowHeight - 60 + 'px';
-              var iSwiper = new Swiper('#i-c1', {
-                scrollbar: '.swiper-scrollbar',
-                direction: 'vertical',
-                slidesPerView: 'auto',
-                freeMode: true,
-                freeModeMomentum: false,
-                mousewheelControl: true,
-                mousewheelSensitivity: 0.5
-              });
-
-              $('.mobile-case img').on('click', function() {
-                showCase(pop,title,desc,contentimg,$(this));
-              });
-
-            } else {
-              $('.pc-case').html(dom);
-              carousel(showCase,pop,title,desc,contentimg);
-            }
+          var dom='';
+          console.log(data);
+          $.each(data.case, function(index, item) {
+            dom += '<img src="' + item.thumbnail + '" data-desc="' + item.description + '" data-name="' + item.name + '" data-sourceimg="' + item.sourceimg + '" alt="">';
           });
+          if (windowWidth < 992) {
+            $('.mobile-case').html(dom);
+            $('.swiper-container')[0].style.height = windowHeight - 60 + 'px';
+            var iSwiper = new Swiper('#i-c1', {
+              scrollbar: '.swiper-scrollbar',
+              direction: 'vertical',
+              slidesPerView: 'auto',
+              freeMode: true,
+              freeModeMomentum: false,
+              mousewheelControl: true,
+              mousewheelSensitivity: 0.5
+            });
+
+            $('.mobile-case img').on('click', function() {
+              showCase(pop, title, desc, contentimg, $(this));
+            });
+
+          } else {
+            $('.pc-case').html(dom);
+            carousel(showCase, pop, title, desc, contentimg);
+          }
+
 
         }, 100);
       }).trigger('resize');
