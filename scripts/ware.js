@@ -49,9 +49,6 @@ define(function() {
       renderer = new THREE.CanvasRenderer();
       renderer.setSize(window.innerWidth, window.innerHeight);
       container.appendChild(renderer.domElement);
-      document.addEventListener('mousemove', onDocumentMouseMove, false);
-      document.addEventListener('touchstart', onDocumentTouchStart, false);
-      document.addEventListener('touchmove', onDocumentTouchMove, false);
       window.addEventListener('resize', onWindowResize, false);
     }
 

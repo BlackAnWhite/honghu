@@ -1,4 +1,3 @@
-/*jshint esversion: 6 */
 /**
  * @Author:      allenAugustine
  * @DateTime:    2017-10-17 15:35:39
@@ -14,17 +13,16 @@ require.config({
     'nav': 'scripts/nav',
     'carousel': 'scripts/carousel',
     'ware': 'scripts/ware',
-    'data': 'scripts/data'
+    'data': 'scripts/data',
+    'animates': 'scripts/animates'
   }
 });
 
-define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'data'],
-  function($, fullpage, nav, Scene, Swiper, carousel, ware, data) {
-    window.onload = function() {
-      setTimeout(function() {
-        document.querySelector('.loading-layer').style.display = "none";
-      }, 100);
-    };
+define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'data', 'animates'],
+  function($, fullpage, nav, Scene, Swiper, carousel, ware, data, Animates) {
+    // window.onload = function() {
+
+    // };
     //展示案例详情
     function showCase(pop, title, desc, contentimg, that) {
       pop.css('z-index', 10000);
@@ -48,12 +46,15 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
       };
     }
     $(function() {
+      setTimeout(function() {
+        document.querySelector('.loading-layer').style.display = "none";
+        $('.btn-group li').addClass('fadeInUp');
+        $('#index_page .rside').addClass('fadeInRight');
+      }, 100);
       //建立场景
-      new Scene(nav);
+      new Scene(nav, Animates);
       ware('#index_page .container', 0xff0000);
       $('#pop_content')[0].style.height = $(window).height() - 50 + 'px';
-
-
       /*=================================================================
       =                     pop 关闭按钮点击事件                        =
       =================================================================*/
@@ -64,7 +65,6 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
           $(this).css('z-index', -1);
         });
       });
-
 
       /*=================================================================
       =                     index_page 按钮触碰效果                     =
@@ -93,6 +93,8 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
             containerHeight = $('#case_page .container').height(),
             carouselBox = $('#case_page .carousel');
 
+          $('.slide-line').css('width',$("#fullpageMenu .nav-menu").eq(0).width());
+
           /*=================================================================
           =                         大小屏图片源切换                        =
           =================================================================*/
@@ -115,7 +117,7 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
           /*=================================================================
           =                            案例响应式                           =
           =================================================================*/
-          var dom='';
+          var dom = '';
           console.log(data);
           $.each(data.case, function(index, item) {
             dom += '<img src="' + item.thumbnail + '" data-desc="' + item.description + '" data-name="' + item.name + '" data-sourceimg="' + item.sourceimg + '" alt="">';

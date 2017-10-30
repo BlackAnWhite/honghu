@@ -13,11 +13,12 @@
   }
 })(typeof window !== 'undefined' ? window : this, function() {
   return Class.extend({
-    init: function(Nav) {
+    init: function(Nav, Animates) {
       //初始化导航下线条的位置
       this.navList = $("#fullpageMenu .nav-menu");
       this.initNav();
       this.nav = new Nav(this.navList);
+      this.animates = new Animates();
       this.allowMoveSlider = true; //是否允许滑动
       this.addListener();
     },
@@ -46,16 +47,36 @@
         return temp;
       })() : 0;
 
-      var navLineCurrentLeft = $("#fullpageMenu .nav-menu").eq(this.pageIndex).offset().left;
+      var navLine = $("#fullpageMenu .nav-menu").eq(this.pageIndex),
+        navLineCurrentLeft = navLine.offset().left;
       $('#fullpageMenu li.slide-line').css({
         opacity: 1
       }).animate({
-        left: navLineCurrentLeft
+        left: navLineCurrentLeft,
+        width: navLine.width()
       }, time || 0);
     },
 
-    renderAnimate: function(page) {
-
+    renderAnimate: function(page, flag) {
+      switch (page.attr('id')) {
+        case 'index_page':
+          flag ? this.animates.renderIndex() : this.animates.uninstallIndex();
+          break;
+        case 'website_page':
+          flag ? this.animates.renderWebsite() : this.animates.uninstallWebsite();
+          break;
+        case 'seo_page':
+          flag ? this.animates.renderSEO() : this.animates.uninstallSEO();
+          break;
+        case 'case_page':
+          flag ? this.animates.renderCase() : this.animates.uninstallCase();
+          break;
+        case 'contact_page':
+          flag ? this.animates.renderContact() : this.animates.uninstallContact();
+          break;
+        default:
+          break;
+      }
     },
 
     addListener: function() {
@@ -70,12 +91,14 @@
         controlArrows: false,
         afterSlideLoad: function() { //滑块进入动画完毕
           self.allowMoveSlider = true;
+          self.renderAnimate(this, true);
         },
         onSlideLeave: function() { //滑块离开动画开始
           self.allowMoveSlider = false;
           setTimeout(function() {
             self.initNav(400);
           }, 10);
+          self.renderAnimate(this, false);
         },
         afterResize: function() {
           self.initNav(400);
@@ -86,14 +109,13 @@
       $('#fullpage').on('mousewheel', function(e) {
         e.preventDefault();
         var mousewheelDirection = e.originalEvent.deltaY > 0 ? 'down' : 'up';
-        if (self.allowMoveSlider){
-          if(mousewheelDirection === 'down'){
+        if (self.allowMoveSlider) {
+          if (mousewheelDirection === 'down') {
             $.fn.fullpage.moveSlideRight();
-          }else{
+          } else {
             $.fn.fullpage.moveSlideLeft();
           }
         }
-         
       });
     }
   });
