@@ -10,6 +10,7 @@ define(['jquery'], function($) {
       this.contactTel = $('#contact_page input[type="tel"]');
       this.contactDesc = $('#contact_page textarea');
       this.contactSubmit = $('#contact_page input[type="submit"]');
+      this.seo = $('#seo_page .animated');
     },
     timeout: function(fn) {
       var self = this;
@@ -33,13 +34,21 @@ define(['jquery'], function($) {
     uninstallWebsite: function() {
       this.timeout(function() {
         this.website.removeClass('fadeInUp');
-      })
+      });
     },
     renderSEO: function() {
-      console.log('render SEO');
+      this.seo.addClass('zoomIn').css('opacity', 1);
     },
     uninstallSEO: function() {
-      console.log('uninstall SEO');
+      this.timeout(function() {
+        this.seo.removeClass('zoomIn').css('opacity', 0);
+      });
+    },
+    renderSmallProgram: function() {
+      console.log('render SmallProgram');
+    },
+    uninstallSmallProgram: function() {
+      console.log('uninstall SmallProgram');
     },
     renderCase: function() {
       console.log('render case');

@@ -35,9 +35,21 @@
             temp = 1;
             break;
           case '3':
-            temp = 2;
+            temp = 1;
             break;
           case '4':
+            temp = 1;
+            break;
+          case '5':
+            temp = 1;
+            break;
+          case '6':
+            temp = 1;
+            break;
+          case '7':
+            temp = 2;
+            break;
+          case '8':
             temp = 3;
             break;
           default:
@@ -67,6 +79,9 @@
           break;
         case 'seo_page':
           flag ? this.animates.renderSEO() : this.animates.uninstallSEO();
+          break;
+        case 'small_program_page':
+          flag ? this.animates.renderSmallProgram() : this.animates.uninstallSmallProgram();
           break;
         case 'case_page':
           flag ? this.animates.renderCase() : this.animates.uninstallCase();

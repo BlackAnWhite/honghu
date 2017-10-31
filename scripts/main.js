@@ -12,17 +12,15 @@ require.config({
     'scene': 'scripts/scene',
     'nav': 'scripts/nav',
     'carousel': 'scripts/carousel',
-    'ware': 'scripts/ware',
+    // 'ware': 'scripts/ware',
     'data': 'scripts/data',
     'animates': 'scripts/animates'
   }
 });
 
-define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'data', 'animates'],
-  function($, fullpage, nav, Scene, Swiper, carousel, ware, data, Animates) {
-    // window.onload = function() {
+define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 'data', 'animates'],
+  function($, fullpage, nav, Scene, Swiper, carousel, /*ware,*/ data, Animates) {
 
-    // };
     //展示案例详情
     function showCase(pop, title, desc, contentimg, that) {
       pop.css('z-index', 10000);
@@ -50,10 +48,10 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
         document.querySelector('.loading-layer').style.display = "none";
         $('.btn-group li').addClass('fadeInUp');
         $('#index_page .rside').addClass('fadeInRight');
-      }, 100);
+      }, 10);
       //建立场景
       new Scene(nav, Animates);
-      ware('#index_page .container', 0xff0000);
+      // ware('#index_page .container', 0xff0000);
       $('#pop_content')[0].style.height = $(window).height() - 50 + 'px';
       /*=================================================================
       =                     pop 关闭按钮点击事件                        =
@@ -79,6 +77,26 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
         });
       });
 
+      /*=================================================================
+      =                            背景图加载                           =
+      =================================================================*/
+        $('#mall_page').css('background-image', 'url(images/mall_bg.jpg)');
+      if ($(window).width() < 768) {
+        $('#small_program_page').css('background-image', 'url(images/small_program_bg_mobile.jpg)');
+        $('#website_page').css('background-image', 'url(images/website_bg_mobile.jpg)');
+        $('#seo_page').css('background-image', 'url(images/seo_bg_mobile.jpg)');
+        $('#contact_page').css('background-image', 'url(images/contact_bg_mobile.jpg)');
+        $('#engineering_page').css('background-image', 'url(images/engineering_bg_mobile.jpg)');
+        $('#drp_page').css('background-image', 'url(images/drp_bg_mobile.jpg)');
+      } else {
+        $('#small_program_page').css('background-image', 'url(images/small_program_bg_pc.jpg)');
+        $('#website_page').css('background-image', 'url(images/website_bg_pc.jpg)');
+        $('#seo_page').css('background-image', 'url(images/seo_bg_pc.jpg)');
+        $('#contact_page').css('background-image', 'url(images/contact_bg_pc.jpg)');
+        $('#engineering_page').css('background-image', 'url(images/engineering_bg_pc.jpg)');
+        $('#drp_page').css('background-image', 'url(images/drp_bg_pc.jpg)');
+      }
+
       var timer,
         pop = $('.pop'), //弹出层
         title = $('.case-content-title'), //弹出层标题盒子
@@ -93,7 +111,7 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
             containerHeight = $('#case_page .container').height(),
             carouselBox = $('#case_page .carousel');
 
-          $('.slide-line').css('width',$("#fullpageMenu .nav-menu").eq(0).width());
+          $('.slide-line').css('width', $("#fullpageMenu .nav-menu").eq(0).width());
 
           /*=================================================================
           =                         大小屏图片源切换                        =
@@ -134,7 +152,7 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
               mousewheelControl: true,
               mousewheelSensitivity: 0.5
             });
-
+            //弹出详情
             $('.mobile-case img').on('click', function() {
               showCase(pop, title, desc, contentimg, $(this));
             });
@@ -143,7 +161,6 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'ware', 'dat
             $('.pc-case').html(dom);
             carousel(showCase, pop, title, desc, contentimg);
           }
-
 
         }, 100);
       }).trigger('resize');

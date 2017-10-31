@@ -5,6 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="browsermode" content="application">
+  <meta name="x5-page-mode" content="app">
+  <meta name="msapplication-tap-highlight" content="no">
   <title>红狐企业网</title>
   <link rel="stylesheet" type="text/css" href="styles/common.css">
   <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.css">
@@ -13,37 +20,29 @@
 </head>
 
 <body>
-  <!--===================================
-  =            loading layer            =
-  ====================================-->
+  <!-- loading layer -->
   <section class="loading-layer">
     <div class="flip-txt-loading middle-center">
       <span>正</span><span>在</span><span>加</span><span>载</span><span>中</span><span>.</span><span>.</span><span>.</span>
     </div>
   </section>
-  <script src="libarys/three.min.js"></script>
-  <!--====  End of loading layer  ====-->
-  <!--============================
-  =            header            =
-  =============================-->
+  <!-- <script src="libarys/three.min.js"></script> -->
+  <!-- nav -->
   <ul id="fullpageMenu">
     <li class="logo"><img class="middle-center" src="images/logo.png" alt=""></li>
     <li data-menuanchor='page1' class="active nav-menu"><a href="#page1/0" id="time_box">首页</a></li>
     <li data-menuanchor='page2' class="nav-menu"><a href="#page1/1">服务</a></li>
-    <li data-menuanchor='page3' class="nav-menu"><a href="#page1/3">案例</a></li>
-    <li data-menuanchor='page4' class="nav-menu"><a href="#page1/4">联系</a></li>
+    <li data-menuanchor='page3' class="nav-menu"><a href="#page1/7">案例</a></li>
+    <li data-menuanchor='page4' class="nav-menu"><a href="#page1/8">联系</a></li>
     <li class="slide-line"></li>
   </ul>
-  <!--====  End of header  ====-->
   <section id="fullpage">
     <section class="section">
-      <!--==================================
-      =            index_page             =
-      ===================================-->
+      <!-- index -->
       <section class="slide" id="index_page">
         <section class="container">
           <section class="lside">
-            <!-- button -->
+            <!-- buttons -->
             <ul class="btn-group">
               <li class="animated">
                 <span class="icon"><i class="iconfont icon-tuoguan"></i></span>
@@ -68,10 +67,7 @@
           </section>
         </section>
       </section>
-      <!--====  End of index_page  ====-->
-      <!--==================================
-      =            website page            =
-      ===================================-->
+      <!-- website -->
       <section class="slide" id="website_page">
         <section class="container">
           <section class="lside animated">
@@ -82,19 +78,46 @@
           </section>
         </section>
       </section>
-      <!--====  End of website page  ====-->
-      <!--==============================
-      =            seo page            =
-      ===============================-->
+      <!-- seo -->
       <section class="slide" id="seo_page">
         <section class="container">
-          <img src="images/seo_page.png" class="middle-center" alt="">
+          <img src="images/seo_page.png" class="animated middle-center" alt="">
         </section>
       </section>
-      <!--====  End of seo page  ====-->
-      <!--===============================
-      =            case page            =
-      ================================-->
+      <!-- 小程序 -->
+      <section class="slide" id="small_program_page">
+        <section class="container">
+          <h2><img src="images/small_program.png" alt="">小程序</h2>
+          <p>触手可及 · 无需下载 · 用完即走</p>
+        </section>
+      </section>
+      <!-- 微商城 -->
+      <section class="slide" id="mall_page">
+        <section class="container">
+          <h2>微商城开发</h2>
+          <p>从UI的规划到页面的设计，从需求的调研到功能的开发，我们为您做到您所想的一切</p>
+        </section>
+      </section>
+      <!-- 分销软件 -->
+      <section class="slide" id="drp_page">
+        <section class="container">
+          <img src="images/drp.png" alt="">
+        </section>
+      </section>
+      <!-- 工程项目管理 -->
+      <section class="slide" id="engineering_page">
+        <section class="container">
+          <h2>工程项目管理系统</h2>
+          <p>工程项目集成管理系统是数十位IT精英和工程技术人员合作研发，以PMBOK为指导，同时结合了中国建筑行业特点，在应用中逐步形成的一套基于互联网的管理系统。</p>
+          <ul class="clear-fix">
+            <li><span><i class="iconfont icon-guanli1"></i></span>集中管理</li>
+            <li><span><i class="iconfont icon-zhuisuchaxun"></i></span>完整追溯</li>
+            <li><span><i class="iconfont icon-jiaojie"></i></span>无缝交接</li>
+            <li><span><i class="iconfont icon-anquan"></i></span>高效安全</li>
+          </ul>
+        </section>
+      </section>
+      <!-- 案例 -->
       <section class="slide" id="case_page">
         <section class="container">
           <div class="carousel" data-gap="10">
@@ -105,19 +128,16 @@
             </nav>
           </div>
         </section>
-          <div class="swiper-container" id="i-c1">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide mobile-case"></div>
-            </div>
-            <div class="swiper-scrollbar" style="opacity: 0;">
-              <div class="swiper-scrollbar-drag" style="height: 20.4px;"></div>
-            </div>
+        <div class="swiper-container" id="i-c1">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide mobile-case"></div>
           </div>
+          <div class="swiper-scrollbar" style="opacity: 0;">
+            <div class="swiper-scrollbar-drag" style="height: 20.4px;"></div>
+          </div>
+        </div>
       </section>
-      <!--====  End of case page  ====-->
-      <!--=============================
-      =            contact            =
-      ==============================-->
+      <!-- contact -->
       <section class="slide" id="contact_page">
         <section class="container">
           <form action="#" class="middle-center">
@@ -129,12 +149,9 @@
           </form>
         </section>
       </section>
-      <!--====  End of contact  ====-->
     </section>
   </section>
-  <!--=========================
-  =            pop            =
-  ==========================-->
+  <!-- pop layer -->
   <section class="pop">
     <section class="closeBtn"></section>
     <div class="swiper-container" id="pop_content">
@@ -150,7 +167,6 @@
       </div>
     </div>
   </section>
-  <!--====  End of pop  ====-->
   <script src="libarys/require.js" data-main="scripts/main"></script>
 </body>
 
