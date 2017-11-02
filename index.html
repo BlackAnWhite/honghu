@@ -12,11 +12,16 @@
   <meta name="browsermode" content="application">
   <meta name="x5-page-mode" content="app">
   <meta name="msapplication-tap-highlight" content="no">
+  <meta name="author" content="allenaugustine">
+  <meta name="email" content="iallenaugustine@gmail.com || misterji0708@qq.com">
   <title>红狐企业网</title>
-  <link rel="stylesheet" type="text/css" href="styles/common.css">
-  <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.css">
-  <link rel="stylesheet" href="styles/animate.min.css">
+  <!-- 开发环境 -->
+  <!-- <link rel="stylesheet" type="text/css" href="styles/common.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.css">
+  <link rel="stylesheet" href="styles/animate.min.css"> -->
+  <!-- 生产环境 -->
+  <link rel="stylesheet" href="styles/main-bundled.css">
 </head>
 
 <body>
@@ -87,21 +92,21 @@
       <!-- 小程序 -->
       <section class="slide" id="small_program_page">
         <section class="container">
-          <h2><img src="images/small_program.png" alt="">小程序</h2>
-          <p>触手可及 · 无需下载 · 用完即走</p>
+          <h2><img src="images/small_program.png" alt="" class="animated"><span class="animated">小程序</span></h2>
+          <p class="animated">触手可及 · 无需下载 · 用完即走</p>
         </section>
       </section>
       <!-- 微商城 -->
       <section class="slide" id="mall_page">
         <section class="container">
-          <h2>微商城开发</h2>
-          <p>从UI的规划到页面的设计，从需求的调研到功能的开发，我们为您做到您所想的一切</p>
+          <h2 class="animated">微商城开发</h2>
+          <p class="animated">从UI的规划到页面的设计，从需求的调研到功能的开发，我们为您做到您所想的一切</p>
         </section>
       </section>
       <!-- 分销软件 -->
       <section class="slide" id="drp_page">
         <section class="container">
-          <img src="images/drp.png" alt="">
+          <img src="images/drp.png" class="animated" alt="">
         </section>
       </section>
       <!-- 工程项目管理 -->
@@ -123,8 +128,8 @@
           <div class="carousel" data-gap="10">
             <figure class="pc-case"></figure>
             <nav>
-              <button class="nav prev">Prev</button>
-              <button class="nav next">Next</button>
+              <button class="nav prev"><span><i class="iconfont icon-jiantou"></i></span>上一张</button>
+              <button class="nav next">下一张<span><i class="iconfont icon-jiantou"></i></span></button>
             </nav>
           </div>
         </section>
@@ -146,6 +151,14 @@
             <input class="animated" type="tel" name="" id="" placeholder="请输入您的联系方式">
             <textarea class="animated" placeholder="请输入您的项目基本信息"></textarea>
             <input class="animated" type="submit" value="提交信息">
+            <footer class="contact-footer animated">
+              <img src="images/hohu.png" alt="">
+              <section>
+                <p>24小时咨询热线:40088-079-029</p>
+                <p>地址:郑州市花园路与农业路交叉口向东150米路南豫博大厦西塔511室</p>
+                <p>Red foxCopyright 版权所有 @红狐企业网 豫ICP备16004903号-1 Copyright 版权所有 @红狐企业网 honghukeji.cn</p>
+              </section>
+            </footer>
           </form>
         </section>
       </section>
@@ -159,6 +172,13 @@
         <div class="swiper-slide">
           <h2 class="case-content-title"></h2>
           <p class="case-content-desc"></p>
+          <div class="line-scale-pulse-out">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
           <div class="case-content-img"></div>
         </div>
       </div>
@@ -167,7 +187,10 @@
       </div>
     </div>
   </section>
-  <script src="libarys/require.js" data-main="scripts/main"></script>
+  <!-- 开发环境 -->
+  <!-- <script src="libarys/require.js" data-main="scripts/main"></script> -->
+  <!-- 生产环境 -->
+  <script src="libarys/require.js" data-main="scripts/main-bundled"></script>
 </body>
 
 </html>

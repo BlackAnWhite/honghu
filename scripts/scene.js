@@ -89,6 +89,12 @@
         case 'contact_page':
           flag ? this.animates.renderContact() : this.animates.uninstallContact();
           break;
+        case 'mall_page':
+          flag ? this.animates.renderMall() : this.animates.uninstallMall();
+          break;
+        case 'drp_page':
+          flag ? this.animates.renderDrp() : this.animates.uninstallDrp();
+          break;
         default:
           break;
       }

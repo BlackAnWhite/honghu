@@ -3,26 +3,29 @@
  * @DateTime:    2017-10-17 15:35:39
  * @Description: application entry
  */
-require.config({
-  baseUrl: './',
-  paths: {
-    'jquery': 'libarys/jquery.min',
-    'fullpage': 'libarys/jquery.fullpage',
-    'swiper': 'libarys/swiper.jquery.min',
-    'scene': 'scripts/scene',
-    'nav': 'scripts/nav',
-    'carousel': 'scripts/carousel',
-    // 'ware': 'scripts/ware',
-    'data': 'scripts/data',
-    'animates': 'scripts/animates'
-  }
-});
 
-define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 'data', 'animates'],
+// require.config({
+//   baseUrl: './',
+//   paths: {
+//     'jquery': 'libarys/jquery.min',
+//     'fullpage': 'libarys/jquery.fullpage',
+//     'swiper': 'libarys/swiper.jquery.min',
+//     'scene': 'scripts/scene',
+//     'nav': 'scripts/nav',
+//     'carousel': 'scripts/carousel',
+//     // 'ware': 'scripts/ware',
+//     'data': 'scripts/data',
+//     'animates': 'scripts/animates'
+//   }
+// });
+
+require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 'data', 'animates'],
   function($, fullpage, nav, Scene, Swiper, carousel, /*ware,*/ data, Animates) {
 
     //展示案例详情
     function showCase(pop, title, desc, contentimg, that) {
+      var loadingImg = $('.line-scale-pulse-out');
+      loadingImg.css('display', 'block');
       pop.css('z-index', 10000);
       pop.animate({ 'opacity': 1 });
       title.html(that.data('name'));
@@ -31,8 +34,9 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 
       tempImg.src = that.data('sourceimg');
       contentimg.html(' ');
       tempImg.onload = function() {
+        loadingImg.css('display', 'none');
         contentimg.html(this);
-        new Swiper('#pop_content', {
+        window.caseSwiper = new Swiper('#pop_content', {
           scrollbar: '.swiper-scrollbar',
           direction: 'vertical',
           slidesPerView: 'auto',
@@ -62,6 +66,9 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 
         }, 500, function() {
           $(this).css('z-index', -1);
         });
+        //销毁swiper对象
+        window.caseSwiper.destroy();
+        $('.pop .swiper-wrapper').css('transform', 'translate3d(0px, 0px, 0px)');
       });
 
       /*=================================================================
@@ -78,9 +85,9 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 
       });
 
       /*=================================================================
-      =                            背景图加载                           =
+      =              延缓背景图加载  增加首屏渲染速度                   =
       =================================================================*/
-        $('#mall_page').css('background-image', 'url(images/mall_bg.jpg)');
+      $('#mall_page').css('background-image', 'url(images/mall_bg.jpg)');
       if ($(window).width() < 768) {
         $('#small_program_page').css('background-image', 'url(images/small_program_bg_mobile.jpg)');
         $('#website_page').css('background-image', 'url(images/website_bg_mobile.jpg)');
@@ -136,7 +143,6 @@ define(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 
           =                            案例响应式                           =
           =================================================================*/
           var dom = '';
-          console.log(data);
           $.each(data.case, function(index, item) {
             dom += '<img src="' + item.thumbnail + '" data-desc="' + item.description + '" data-name="' + item.name + '" data-sourceimg="' + item.sourceimg + '" alt="">';
           });

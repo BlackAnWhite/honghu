@@ -10,7 +10,13 @@ define(['jquery'], function($) {
       this.contactTel = $('#contact_page input[type="tel"]');
       this.contactDesc = $('#contact_page textarea');
       this.contactSubmit = $('#contact_page input[type="submit"]');
+      this.contactFooter = $('#contact_page .contact-footer')
       this.seo = $('#seo_page .animated');
+      this.splogo = $('#small_program_page img.animated');
+      this.sptitle = $('#small_program_page span.animated');
+      this.spdesc = $('#small_program_page p.animated');
+      this.mall = $('#mall_page .animated');
+      this.drp = $('#drp_page .animated');
     },
     timeout: function(fn) {
       var self = this;
@@ -45,10 +51,32 @@ define(['jquery'], function($) {
       });
     },
     renderSmallProgram: function() {
-      console.log('render SmallProgram');
+      this.splogo.addClass('rotateIn').css('opacity', 1);
+      this.sptitle.addClass('fadeInRight').css('opacity', 1);
+      this.spdesc.addClass('fadeInUp').css('opacity', 1);
     },
     uninstallSmallProgram: function() {
-      console.log('uninstall SmallProgram');
+      this.timeout(function() {
+        this.splogo.removeClass('rotateIn').css('opacity', 0);
+        this.sptitle.removeClass('fadeInRight').css('opacity', 0);
+        this.spdesc.removeClass('fadeInUp').css('opacity', 0);
+      });
+    },
+    renderMall: function() {
+      this.mall.addClass('fadeInDown').css('opacity', 1);
+    },
+    uninstallMall: function() {
+      this.timeout(function() {
+        this.mall.removeClass('fadeInDown').css('opacity', 0);
+      });
+    },
+    renderDrp: function() {
+      this.drp.addClass('rotateIn').css('opacity', 1);
+    },
+    uninstallDrp: function() {
+      this.timeout(function() {
+        this.drp.removeClass('rotateIn').css('opacity', 0);
+      });
     },
     renderCase: function() {
       console.log('render case');
@@ -62,6 +90,7 @@ define(['jquery'], function($) {
       this.contactTel.addClass('fadeInRight');
       this.contactDesc.addClass('fadeInUp');
       this.contactSubmit.addClass('fadeInUp');
+      this.contactFooter.addClass('fadeInUp');
     },
     uninstallContact: function() {
       this.timeout(function() {
@@ -70,6 +99,7 @@ define(['jquery'], function($) {
         this.contactTel.removeClass('fadeInRight');
         this.contactDesc.removeClass('fadeInUp');
         this.contactSubmit.removeClass('fadeInUp');
+        this.contactFooter.removeClass('fadeInUp');
       })
     }
   });
