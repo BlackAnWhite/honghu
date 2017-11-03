@@ -46,16 +46,48 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
         });
       };
     }
+
+    //menu按钮状态切换
+    var currentColor = '';
+
+    function menuChange(status) {
+      var menu = $('.menu'),
+        nav = $('#xs_nav');
+      if (status == 'menu') {
+        $('.menu span').css('background-color', currentColor);
+        menu.find('span').eq(0).css('transform', 'translateY(11px)');
+        menu.find('span').eq(1).css('transform', 'translateY(-11px)');
+        menu.find('span').eq(2).css('width', '70%');
+        nav.stop().animate({
+          opacity: 0
+        }, 500, function() {
+          $(this).css('z-index', -1)
+        });
+      } else {
+        currentColor = $('.menu span').css('background-color');
+        $('.menu span').css('background-color', '#333');
+        menu.find('span').eq(0).css('transform', 'rotate(45deg)');
+        menu.find('span').eq(1).css('transform', 'rotate(-45deg)');
+        menu.find('span').eq(2).css('width', 0);
+        nav.css('z-index', 1000).stop().animate({
+          opacity: 1
+        }, 500);
+      }
+    }
+
     $(function() {
+
       setTimeout(function() {
         document.querySelector('.loading-layer').style.display = "none";
         $('.btn-group li').addClass('fadeInUp');
         $('#index_page .rside').addClass('fadeInRight');
       }, 10);
+
       //建立场景
       new Scene(nav, Animates);
       // ware('#index_page .container', 0xff0000);
       $('#pop_content')[0].style.height = $(window).height() - 50 + 'px';
+
       /*=================================================================
       =                     pop 关闭按钮点击事件                        =
       =================================================================*/
@@ -71,6 +103,24 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
       });
 
       /*=================================================================
+      =                             小屏幕导航                          =
+      =================================================================*/
+      var menuStatus = true;
+      $('.menu').on('click', function(e) {
+        if (menuStatus) {
+          menuStatus = false;
+          menuChange();
+        } else {
+          menuStatus = true;
+          menuChange('menu');
+        }
+      });
+      $('#xs_nav a').on('click', function() {
+        menuStatus = true;
+        menuChange('menu');
+      });
+
+      /*=================================================================
       =                           在线留言                              =
       =================================================================*/
       var popMessage = $('.pop-message');
@@ -81,7 +131,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
       }).on('click', function() {
         popMessage.css('z-index', 10005).animate({ 'opacity': 0.95 });
         setTimeout(function() {
-          popMessage.find('.animated').addClass('flipInX').css('opacity',1);
+          popMessage.find('.animated').addClass('flipInX').css('opacity', 1);
         }, 100);
       });
 
@@ -90,7 +140,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
           opacity: 0
         }, 500, function() {
           $(this).css('z-index', -1);
-        }).find('.animated').removeClass('flipInX').css('opacity',0);
+        }).find('.animated').removeClass('flipInX').css('opacity', 0);
       });
 
       /*=================================================================

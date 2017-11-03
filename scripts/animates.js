@@ -52,16 +52,16 @@ define(['jquery'], function($) {
       });
     },
     renderSmallProgram: function() {
-      this.splogo.addClass('rotateIn').css('opacity', 1);
-      this.sptitle.addClass('fadeInRight').css('opacity', 1);
-      this.spdesc.addClass('fadeInUp').css('opacity', 1);
+      // this.splogo.addClass('rotateIn').css('opacity', 1);
+      // this.sptitle.addClass('fadeInRight').css('opacity', 1);
+      // this.spdesc.addClass('fadeInUp').css('opacity', 1);
     },
     uninstallSmallProgram: function() {
-      this.timeout(function() {
-        this.splogo.removeClass('rotateIn').css('opacity', 0);
-        this.sptitle.removeClass('fadeInRight').css('opacity', 0);
-        this.spdesc.removeClass('fadeInUp').css('opacity', 0);
-      });
+      // this.timeout(function() {
+      //   this.splogo.removeClass('rotateIn').css('opacity', 0);
+      //   this.sptitle.removeClass('fadeInRight').css('opacity', 0);
+      //   this.spdesc.removeClass('fadeInUp').css('opacity', 0);
+      // });
     },
     renderMall: function() {
       this.mall.addClass('fadeInDown').css('opacity', 1);
