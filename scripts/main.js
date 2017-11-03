@@ -4,20 +4,20 @@
  * @Description: application entry
  */
 
-// require.config({
-//   baseUrl: './',
-//   paths: {
-//     'jquery': 'libarys/jquery.min',
-//     'fullpage': 'libarys/jquery.fullpage',
-//     'swiper': 'libarys/swiper.jquery.min',
-//     'scene': 'scripts/scene',
-//     'nav': 'scripts/nav',
-//     'carousel': 'scripts/carousel',
-//     // 'ware': 'scripts/ware',
-//     'data': 'scripts/data',
-//     'animates': 'scripts/animates'
-//   }
-// });
+require.config({
+  baseUrl: './',
+  paths: {
+    'jquery': 'libarys/jquery.min',
+    'fullpage': 'libarys/jquery.fullpage',
+    'swiper': 'libarys/swiper.jquery.min',
+    'scene': 'scripts/scene',
+    'nav': 'scripts/nav',
+    'carousel': 'scripts/carousel',
+    // 'ware': 'scripts/ware',
+    'data': 'scripts/data',
+    'animates': 'scripts/animates'
+  }
+});
 
 require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 'data', 'animates'],
   function($, fullpage, nav, Scene, Swiper, carousel, /*ware,*/ data, Animates) {
@@ -26,8 +26,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
     function showCase(pop, title, desc, contentimg, that) {
       var loadingImg = $('.line-scale-pulse-out');
       loadingImg.css('display', 'block');
-      pop.css('z-index', 10000);
-      pop.animate({ 'opacity': 1 });
+      pop.css('z-index', 10000).animate({ 'opacity': 1 });
       title.html(that.data('name'));
       desc.html(that.data('desc'));
       var tempImg = new Image();
@@ -60,7 +59,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
       /*=================================================================
       =                     pop 关闭按钮点击事件                        =
       =================================================================*/
-      $('.closeBtn').on('click', function() {
+      $('.pop .closeBtn').on('click', function() {
         $('.pop').animate({
           opacity: 0
         }, 500, function() {
@@ -69,6 +68,29 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
         //销毁swiper对象
         window.caseSwiper.destroy();
         $('.pop .swiper-wrapper').css('transform', 'translate3d(0px, 0px, 0px)');
+      });
+
+      /*=================================================================
+      =                           在线留言                              =
+      =================================================================*/
+      var popMessage = $('.pop-message');
+      $('.weichat').on('mouseenter', function() {
+        $(this).find('.animated').addClass('bounce');
+      }).on('mouseleave', function() {
+        $(this).find('.animated').removeClass('bounce');
+      }).on('click', function() {
+        popMessage.css('z-index', 10005).animate({ 'opacity': 0.95 });
+        setTimeout(function() {
+          popMessage.find('.animated').addClass('flipInX').css('opacity',1);
+        }, 100);
+      });
+
+      $('.pop-message .closeBtn').on('click', function() {
+        popMessage.animate({
+          opacity: 0
+        }, 500, function() {
+          $(this).css('z-index', -1);
+        }).find('.animated').removeClass('flipInX').css('opacity',0);
       });
 
       /*=================================================================
@@ -104,7 +126,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
         $('#drp_page').css('background-image', 'url(images/drp_bg_pc.jpg)');
       }
 
-      var timer,
+      var timer, dexterity = 100, //案例页面上下滑动翻页灵活度
         pop = $('.pop'), //弹出层
         title = $('.case-content-title'), //弹出层标题盒子
         contentimg = $('.case-content-img'), //弹出层内容盒子
@@ -144,7 +166,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
           =================================================================*/
           var dom = '';
           $.each(data.case, function(index, item) {
-            dom += '<img src="' + item.thumbnail + '" data-desc="' + item.description + '" data-name="' + item.name + '" data-sourceimg="' + item.sourceimg + '" alt="">';
+            dom += '<img class="animated" src="' + item.thumbnail + '" data-desc="' + item.description + '" data-name="' + item.name + '" data-sourceimg="' + item.sourceimg + '" alt="">';
           });
           if (windowWidth < 992) {
             $('.mobile-case').html(dom);
@@ -156,7 +178,15 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
               freeMode: true,
               freeModeMomentum: false,
               mousewheelControl: true,
-              mousewheelSensitivity: 0.5
+              mousewheelSensitivity: 0.5,
+              onSetTranslate: function(a, b) {
+                if (b > dexterity) {
+                  $.fn.fullpage.moveSlideLeft();
+                }
+                if (b < -$('#case_page .swiper-wrapper').height() + $('#case_page .swiper-container').height() - dexterity) {
+                  $.fn.fullpage.moveSlideRight();
+                }
+              }
             });
             //弹出详情
             $('.mobile-case img').on('click', function() {

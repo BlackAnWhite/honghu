@@ -95,6 +95,9 @@
         case 'drp_page':
           flag ? this.animates.renderDrp() : this.animates.uninstallDrp();
           break;
+        case 'engineering_page':
+          flag ? this.animates.renderEngineering() : this.animates.uninstallEngineering();
+          break;
         default:
           break;
       }
