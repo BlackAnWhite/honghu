@@ -59,10 +59,12 @@
         return temp;
       })() : 0;
 
-      if(this.pageIndex == 2 || this.pageIndex ==3){
-        $('.menu span').css('background-color','#333');
-      }else{
-        $('.menu span').css('background-color','#fff');
+      if (location.hash.split('/').length > 1 && location.hash.split('/')[1] == 3 || location.hash.split('/')[1] == 7 || location.hash.split('/')[1] == 8) {
+        $('.menu span').css('background-color', '#333');
+        $('.weichat,.weichat span i').css('color', '#333');
+      } else {
+        $('.menu span').css('background-color', '#fff');
+        $('.weichat,.weichat span i').css('color', '#fff');
       }
 
       var navLine = $("#fullpageMenu .nav-menu").eq(this.pageIndex),

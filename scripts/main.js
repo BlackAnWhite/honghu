@@ -57,7 +57,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
         $('.menu span').css('background-color', currentColor);
         menu.find('span').eq(0).css('transform', 'translateY(11px)');
         menu.find('span').eq(1).css('transform', 'translateY(-11px)');
-        menu.find('span').eq(2).css('width', '70%');
+        menu.find('span').eq(2).css('width', '65%');
         nav.stop().animate({
           opacity: 0
         }, 500, function() {
@@ -250,6 +250,49 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
 
         }, 100);
       }).trigger('resize');
+
+      /*=================================================================
+      =                            小程序                               =
+      =================================================================*/
+      var spAllBtn = $('#small_program_page .local-nav li'),
+        spAllContent = $('#small_program_page img.content'),
+        spCurIndex = 0;
+      spAllContent.fadeOut(1).eq(0).fadeIn(1);
+
+      function spEvent() {
+        var index = $(this).index();
+        if (index != spCurIndex) {
+          spCurIndex = index;
+          spAllContent.css({ 'display': 'none', 'opacity': 0 }).eq(index).css('display', 'block').stop().animate({
+            opacity: 1
+          },500);
+          spAllBtn.removeClass('active');
+          $(this).addClass('active');
+        }
+      }
+      spAllBtn.on('mouseenter', spEvent).on('click', spEvent);
+
+      /*=================================================================
+      =                         商城分页显示                            =
+      =================================================================*/
+
+      var mallAllBtn = $('#mall_page .local-nav li'),
+        mallAllBox = $('#mall_page .content li'),
+        mallCurIndex = 0;
+      mallAllBox.css('display', 'none').eq(0).css('display', 'block');
+      mallAllBtn.on('click', function() {
+        mallCurIndex = $(this).index();
+        mallAllBtn.removeClass('active');
+        $(this).addClass('active');
+        mallAllBox.css('display', 'none').eq(mallCurIndex).css('display', 'block');
+      });
+
+      setInterval(function(){
+        mallCurIndex = mallCurIndex+1>=mallAllBtn.length?0:mallCurIndex+1;
+        mallAllBtn.removeClass('active').eq(mallCurIndex).addClass('active');
+        mallAllBox.css('display', 'none').eq(mallCurIndex).css('display', 'block');
+      },2000)
+
     });
   });
 
