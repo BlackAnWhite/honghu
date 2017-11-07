@@ -13,14 +13,13 @@ require.config({
     'scene': 'scripts/scene',
     'nav': 'scripts/nav',
     'carousel': 'scripts/carousel',
-    // 'ware': 'scripts/ware',
     'data': 'scripts/data',
     'animates': 'scripts/animates'
   }
 });
 
-require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/ 'data', 'animates'],
-  function($, fullpage, nav, Scene, Swiper, carousel, /*ware,*/ data, Animates) {
+require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'animates'],
+  function($, fullpage, nav, Scene, Swiper, carousel, data, Animates) {
 
     //展示案例详情
     function showCase(pop, title, desc, contentimg, that) {
@@ -180,14 +179,16 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
         pop = $('.pop'), //弹出层
         title = $('.case-content-title'), //弹出层标题盒子
         contentimg = $('.case-content-img'), //弹出层内容盒子
-        desc = $('.case-content-desc'); //弹出层描述盒子
+        desc = $('.case-content-desc'), //弹出层描述盒子
+        windowWidth = $(window).width(),
+        windowHeight = $(window).height();
 
       $(window).on('resize', function() {
         clearTimeout(timer);
         timer = setTimeout(function() {
-          var windowWidth = $(window).width(),
-            windowHeight = $(window).height(),
-            containerHeight = $('#case_page .container').height(),
+          windowWidth = $(window).width();
+          windowHeight = $(window).height();
+          var containerHeight = $('#case_page .container').height(),
             carouselBox = $('#case_page .carousel');
 
           $('.slide-line').css('width', $("#fullpageMenu .nav-menu").eq(0).width());
@@ -242,35 +243,51 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
             $('.mobile-case img').on('click', function() {
               showCase(pop, title, desc, contentimg, $(this));
             });
-
           } else {
             $('.pc-case').html(dom);
             carousel(showCase, pop, title, desc, contentimg);
           }
-
         }, 100);
       }).trigger('resize');
 
       /*=================================================================
       =                            小程序                               =
       =================================================================*/
-      var spAllBtn = $('#small_program_page .local-nav li'),
-        spAllContent = $('#small_program_page img.content'),
-        spCurIndex = 0;
-      spAllContent.fadeOut(1).eq(0).fadeIn(1);
+      function setPageBgChangeEvent(spAllBtn,page) {
+        var spAllBtn = spAllBtn,
+          spCurIndex = 0;
 
-      function spEvent() {
-        var index = $(this).index();
-        if (index != spCurIndex) {
-          spCurIndex = index;
-          spAllContent.css({ 'display': 'none', 'opacity': 0 }).eq(index).css('display', 'block').stop().animate({
-            opacity: 1
-          },500);
-          spAllBtn.removeClass('active');
-          $(this).addClass('active');
+        function spEvent() {
+          var index = $(this).index(),
+            bgUrl = windowWidth > 768 ? $(this).attr('data-lg-bg') : $(this).attr('data-xs-bg');
+          if (index != spCurIndex) {
+            spCurIndex = index;
+            $(page).css('background-image', 'url(' + bgUrl + ')');
+            $(page+' .title-group p').html($(this).attr('data-content'));
+            $(page+' .title-group h2').html($(this).attr('data-title'));
+            spAllBtn.removeClass('active');
+            $(this).addClass('active');
+          }
         }
+        spAllBtn.on('mouseenter', spEvent).on('click', spEvent);
       }
-      spAllBtn.on('mouseenter', spEvent).on('click', spEvent);
+      setPageBgChangeEvent($('#small_program_page .local-nav li'),'#small_program_page');
+      setPageBgChangeEvent($('#seo_page .local-nav li'),'#seo_page');
+      // var spAllBtn = $('#small_program_page .local-nav li'),
+      //   spCurIndex = 0;
+
+      // function spEvent() {
+      //   var index = $(this).index(),
+      //     bgUrl = windowWidth > 768 ? $(this).attr('data-lg-bg') : $(this).attr('data-xs-bg');
+      //   if (index != spCurIndex) {
+      //     spCurIndex = index;
+      //     $('#small_program_page').css('background-image', 'url(' + bgUrl + ')');
+      //     $('#small_program_page .title-group p').html($(this).attr('data-content'));
+      //     spAllBtn.removeClass('active');
+      //     $(this).addClass('active');
+      //   }
+      // }
+      // spAllBtn.on('mouseenter', spEvent).on('click', spEvent);
 
       /*=================================================================
       =                         商城分页显示                            =
@@ -287,11 +304,11 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', /*'ware',*/
         mallAllBox.css('display', 'none').eq(mallCurIndex).css('display', 'block');
       });
 
-      setInterval(function(){
-        mallCurIndex = mallCurIndex+1>=mallAllBtn.length?0:mallCurIndex+1;
+      setInterval(function() {
+        mallCurIndex = mallCurIndex + 1 >= mallAllBtn.length ? 0 : mallCurIndex + 1;
         mallAllBtn.removeClass('active').eq(mallCurIndex).addClass('active');
         mallAllBox.css('display', 'none').eq(mallCurIndex).css('display', 'block');
-      },2000)
+      }, 5000);
 
     });
   });

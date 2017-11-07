@@ -8,10 +8,10 @@ define(['jquery'], function($) {
       this.contactDesc = $('#contact_page p.animated:not(.info)');
       this.contactImg = $('#contact_page img.animated');
       this.contactInfo = $('#contact_page p.info');
-      this.seo = $('#seo_page .animated');
-      this.splogo = $('#small_program_page img.animated');
-      this.sptitle = $('#small_program_page span.animated');
-      this.spdesc = $('#small_program_page p.animated');
+      // this.seo = $('#seo_page .animated');
+      // this.splogo = $('#small_program_page img.animated');
+      // this.sptitle = $('#small_program_page span.animated');
+      // this.spdesc = $('#small_program_page p.animated');
       this.mall = $('#mall_page .animated');
       this.drp = $('#drp_page .animated');
       this.engineeringTitle = $('#engineering_page h2');
@@ -44,12 +44,12 @@ define(['jquery'], function($) {
       });
     },
     renderSEO: function() {
-      this.seo.addClass('zoomIn').css('opacity', 1);
+      // this.seo.addClass('zoomIn').css('opacity', 1);
     },
     uninstallSEO: function() {
-      this.timeout(function() {
-        this.seo.removeClass('zoomIn').css('opacity', 0);
-      });
+      // this.timeout(function() {
+      //   this.seo.removeClass('zoomIn').css('opacity', 0);
+      // });
     },
     renderSmallProgram: function() {
       // this.splogo.addClass('rotateIn').css('opacity', 1);
