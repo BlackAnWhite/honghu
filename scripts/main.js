@@ -253,9 +253,9 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
       /*=================================================================
       =                            小程序                               =
       =================================================================*/
-      function setPageBgChangeEvent(spAllBtn,page) {
+      function setPageBgChangeEvent(spAllBtn, page) {
         var spAllBtn = spAllBtn,
-          spCurIndex = 0;
+          spCurIndex = -1;
 
         function spEvent() {
           var index = $(this).index(),
@@ -263,31 +263,16 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
           if (index != spCurIndex) {
             spCurIndex = index;
             $(page).css('background-image', 'url(' + bgUrl + ')');
-            $(page+' .title-group p').html($(this).attr('data-content'));
-            $(page+' .title-group h2').html($(this).attr('data-title'));
+            $(page + ' .title-group .desc-content').html($(this).attr('data-content'));
+            $(page + ' .title-group h2').html($(this).attr('data-title'));
             spAllBtn.removeClass('active');
             $(this).addClass('active');
           }
         }
         spAllBtn.on('mouseenter', spEvent).on('click', spEvent);
       }
-      setPageBgChangeEvent($('#small_program_page .local-nav li'),'#small_program_page');
-      setPageBgChangeEvent($('#seo_page .local-nav li'),'#seo_page');
-      // var spAllBtn = $('#small_program_page .local-nav li'),
-      //   spCurIndex = 0;
-
-      // function spEvent() {
-      //   var index = $(this).index(),
-      //     bgUrl = windowWidth > 768 ? $(this).attr('data-lg-bg') : $(this).attr('data-xs-bg');
-      //   if (index != spCurIndex) {
-      //     spCurIndex = index;
-      //     $('#small_program_page').css('background-image', 'url(' + bgUrl + ')');
-      //     $('#small_program_page .title-group p').html($(this).attr('data-content'));
-      //     spAllBtn.removeClass('active');
-      //     $(this).addClass('active');
-      //   }
-      // }
-      // spAllBtn.on('mouseenter', spEvent).on('click', spEvent);
+      setPageBgChangeEvent($('#small_program_page .local-nav li'), '#small_program_page');
+      setPageBgChangeEvent($('#seo_page .local-nav li'), '#seo_page');
 
       /*=================================================================
       =                         商城分页显示                            =

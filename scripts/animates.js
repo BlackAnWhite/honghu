@@ -8,16 +8,17 @@ define(['jquery'], function($) {
       this.contactDesc = $('#contact_page p.animated:not(.info)');
       this.contactImg = $('#contact_page img.animated');
       this.contactInfo = $('#contact_page p.info');
-      // this.seo = $('#seo_page .animated');
-      // this.splogo = $('#small_program_page img.animated');
-      // this.sptitle = $('#small_program_page span.animated');
-      // this.spdesc = $('#small_program_page p.animated');
       this.mall = $('#mall_page .animated');
       this.drp = $('#drp_page .animated');
       this.engineeringTitle = $('#engineering_page h2');
       this.engineeringDesc = $('#engineering_page p');
       this.engineeringItem = $('#engineering_page li');
-
+      this.seo = $('#seo_page .desc-content .middle-center');
+      this.seoBtn = $('#seo_page ul.animated');
+      this.splogo = $('#small_program_page .desc-content h3 img');
+      this.sptitle = $('#small_program_page .desc-content h3 span');
+      this.spdesc = $('#small_program_page .desc-content p.animated');
+      this.spBtn = $('#small_program_page ul.animated');
     },
     timeout: function(fn) {
       var self = this;
@@ -44,24 +45,28 @@ define(['jquery'], function($) {
       });
     },
     renderSEO: function() {
-      // this.seo.addClass('zoomIn').css('opacity', 1);
+      this.seo.addClass('zoomIn').css('opacity', 1);
+      this.seoBtn.addClass('fadeInUp').css('opacity', 1);
     },
     uninstallSEO: function() {
-      // this.timeout(function() {
-      //   this.seo.removeClass('zoomIn').css('opacity', 0);
-      // });
+      this.timeout(function() {
+        this.seo.removeClass('zoomIn').css('opacity', 0);
+        this.seoBtn.removeClass('fadeInUp').css('opacity', 0);
+      });
     },
     renderSmallProgram: function() {
-      // this.splogo.addClass('rotateIn').css('opacity', 1);
-      // this.sptitle.addClass('fadeInRight').css('opacity', 1);
-      // this.spdesc.addClass('fadeInUp').css('opacity', 1);
+      this.splogo.addClass('rotateIn').css('opacity', 1);
+      this.sptitle.addClass('fadeInRight').css('opacity', 1);
+      this.spdesc.addClass('fadeInUp').css('opacity', 1);
+      this.spBtn.addClass('fadeInUp').css('opacity', 1);
     },
     uninstallSmallProgram: function() {
-      // this.timeout(function() {
-      //   this.splogo.removeClass('rotateIn').css('opacity', 0);
-      //   this.sptitle.removeClass('fadeInRight').css('opacity', 0);
-      //   this.spdesc.removeClass('fadeInUp').css('opacity', 0);
-      // });
+      this.timeout(function() {
+        this.splogo.removeClass('rotateIn').css('opacity', 0);
+        this.sptitle.removeClass('fadeInRight').css('opacity', 0);
+        this.spdesc.removeClass('fadeInUp').css('opacity', 0);
+        this.spBtn.removeClass('fadeInUp').css('opacity', 0);
+      });
     },
     renderMall: function() {
       this.mall.addClass('fadeInDown').css('opacity', 1);
