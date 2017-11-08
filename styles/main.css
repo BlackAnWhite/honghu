@@ -697,11 +697,11 @@ p {
 }
 
 #seo_page .local-nav li:nth-child(1) {
-  background-image: url('../images/seo_bg_mobile.jpg');
+  background-image: url('../images/seo/01.jpg');
 }
 
 #seo_page .local-nav li:nth-child(2) {
-  background-image: url('../images/small-program/people1.png');
+  background-image: url('../images/seo/02.jpg');
 }
 
 #seo_page .local-nav li h6 {
@@ -840,6 +840,7 @@ p {
   margin: 0 auto;
   text-align: center;
   color: #dedede;
+  transition: all ease .5s;
 }
 
 #seo_page .desc-content img,
@@ -881,15 +882,15 @@ p {
 }
 
 #small_program_page .local-nav li:nth-child(1) {
-  background-image: url('../images/small_program_bg_mobile.jpg');
+  background-image: url('../images/small-program/01.jpg');
 }
 
 #small_program_page .local-nav li:nth-child(2) {
-  background-image: url('../images/small-program/people1.png');
+  background-image: url('../images/small-program/02.jpg');
 }
 
 #small_program_page .local-nav li:nth-child(3) {
-  background-image: url('../images/small-program/people2.png');
+  background-image: url('../images/small-program/03.jpg');
 }
 
 #small_program_page .local-nav li h6 {
@@ -922,6 +923,10 @@ p {
 #small_program_page .local-nav li.active h6 {
   opacity: 1;
   color: #fff;
+}
+
+#small_program_page .desc-content {
+  transition: all ease .5s;
 }
 
 #small_program_page .desc-content h3 {
