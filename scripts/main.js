@@ -97,7 +97,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
           $(this).css('z-index', -1);
         });
         //销毁swiper对象
-        window.caseSwiper.destroy();
+        if (window.caseSwiper) window.caseSwiper.destroy();
         $('.pop .swiper-wrapper').css('transform', 'translate3d(0px, 0px, 0px)');
       });
 
@@ -158,7 +158,6 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
       /*=================================================================
       =              延缓背景图加载  增加首屏渲染速度                   =
       =================================================================*/
-      $('#mall_page').css('background-image', 'url(images/mall_bg.jpg)');
       if ($(window).width() < 768) {
         $('#small_program_page').css('background-image', 'url(images/small_program_bg_mobile.jpg)');
         $('#website_page').css('background-image', 'url(images/website_bg_mobile.jpg)');
@@ -166,6 +165,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
         $('#contact_page').css('background-image', 'url(images/contact_bg_mobile.jpg)');
         $('#engineering_page').css('background-image', 'url(images/engineering_bg_mobile.jpg)');
         $('#drp_page').css('background-image', 'url(images/drp_bg_mobile.jpg)');
+        $('#mall_page').css('background-image', 'url(images/mall_bg_mobile.jpg)');
       } else {
         $('#small_program_page').css('background-image', 'url(images/small_program_bg_pc.jpg)');
         $('#website_page').css('background-image', 'url(images/website_bg_pc.jpg)');
@@ -173,6 +173,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
         $('#contact_page').css('background-image', 'url(images/contact_bg_pc.jpg)');
         $('#engineering_page').css('background-image', 'url(images/engineering_bg_pc.jpg)');
         $('#drp_page').css('background-image', 'url(images/drp_bg_pc.jpg)');
+        $('#mall_page').css('background-image', 'url(images/mall_bg_pc.jpg)');
       }
 
       var timer, dexterity = 100, //案例页面上下滑动翻页灵活度
@@ -253,6 +254,9 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
       /*=================================================================
       =                            小程序                               =
       =================================================================*/
+      window.SEOFLAG = false;
+      window.SPFLAG = false;
+
       function setPageBgChangeEvent(spAllBtn, page) {
         var spAllBtn = spAllBtn,
           spCurIndex = -1;
@@ -261,10 +265,19 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
           var index = $(this).index(),
             bgUrl = windowWidth > 768 ? $(this).attr('data-lg-bg') : $(this).attr('data-xs-bg');
           if (index != spCurIndex) {
+            if (!window.SEOFLAG && page.indexOf('seo_page') != -1) window.SEOFLAG = true;
+            if (!window.SPFLAG && page.indexOf('small_program_page') != -1) window.SPFLAG = true;
             spCurIndex = index;
             $(page).css('background-image', 'url(' + bgUrl + ')');
-            $(page + ' .title-group .desc-content').html($(this).attr('data-content'));
-            $(page + ' .title-group h2').html($(this).attr('data-title'));
+            var title = $(page + ' .title-group .desc-content'),
+              con = $(page + ' .title-group h2');
+            title.html(' ').removeClass('bounceInDown');
+            con.html(' ').removeClass('bounceInDown'),
+              self = $(this);
+            setTimeout(function() {
+              title.html(self.attr('data-content')).addClass('bounceInDown');
+              con.html(self.attr('data-title')).addClass('bounceInDown')
+            }, 10);
             spAllBtn.removeClass('active');
             $(this).addClass('active');
           }
@@ -294,6 +307,23 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
         mallAllBtn.removeClass('active').eq(mallCurIndex).addClass('active');
         mallAllBox.css('display', 'none').eq(mallCurIndex).css('display', 'block');
       }, 5000);
+
+      /*=================================================================
+      =                         图片预加载                              =
+      =================================================================*/
+      var urlBoxs = $('#small_program_page .local-nav li,#seo_page .local-nav li'),
+        urls = [];
+      urlBoxs.each(function(index, item) {
+        if (windowWidth > 768) {
+          urls.push($(item).attr('data-lg-bg'));
+        } else {
+          urls.push($(item).attr('data-xs-bg'));
+        }
+      });
+      $.each(urls, function(index, item) {
+        var temp = document.createElement('img');
+        temp.src = item;
+      });
 
     });
   });

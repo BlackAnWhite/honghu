@@ -75,6 +75,7 @@
         left: navLineCurrentLeft,
         width: navLine.width()
       }, time || 0);
+      $('#xs_nav li').removeClass('active').eq(this.pageIndex).addClass('active');
     },
 
     renderAnimate: function(page, flag) {

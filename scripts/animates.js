@@ -19,6 +19,8 @@ define(['jquery'], function($) {
       this.sptitle = $('#small_program_page .desc-content h3 span');
       this.spdesc = $('#small_program_page .desc-content p.animated');
       this.spBtn = $('#small_program_page ul.animated');
+      this.seoTitleGroup = $('#seo_page .title-group .desc-content , #seo_page .title-group h2');
+      this.spTitleGroup = $('#small_program_page .title-group .desc-content , #small_program_page .title-group h2');
     },
     timeout: function(fn) {
       var self = this;
@@ -47,11 +49,14 @@ define(['jquery'], function($) {
     renderSEO: function() {
       this.seo.addClass('zoomIn').css('opacity', 1);
       this.seoBtn.addClass('fadeInUp').css('opacity', 1);
+      console.log(window.SEOFLAG);
+      if(window.SEOFLAG == true) this.seoTitleGroup.addClass('bounceInDown').css('opacity', 1);
     },
     uninstallSEO: function() {
       this.timeout(function() {
         this.seo.removeClass('zoomIn').css('opacity', 0);
         this.seoBtn.removeClass('fadeInUp').css('opacity', 0);
+        if(window.SEOFLAG == true)this.seoTitleGroup.removeClass('bounceInDown').css('opacity', 0);
       });
     },
     renderSmallProgram: function() {
@@ -59,6 +64,7 @@ define(['jquery'], function($) {
       this.sptitle.addClass('fadeInRight').css('opacity', 1);
       this.spdesc.addClass('fadeInUp').css('opacity', 1);
       this.spBtn.addClass('fadeInUp').css('opacity', 1);
+      if(window.SPFLAG == true)this.spTitleGroup.addClass('bounceInDown').css('opacity', 1);
     },
     uninstallSmallProgram: function() {
       this.timeout(function() {
@@ -66,6 +72,7 @@ define(['jquery'], function($) {
         this.sptitle.removeClass('fadeInRight').css('opacity', 0);
         this.spdesc.removeClass('fadeInUp').css('opacity', 0);
         this.spBtn.removeClass('fadeInUp').css('opacity', 0);
+        if(window.SPFLAG == true)this.spTitleGroup.removeClass('bounceInDown').css('opacity', 0);
       });
     },
     renderMall: function() {

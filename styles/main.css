@@ -277,6 +277,12 @@ p {
   #xs_nav ul li a span {
     display: block;
   }
+  #xs_nav ul li:hover a {
+    color: #da241c;
+  }
+  #xs_nav ul li.active a {
+    color: #da241c;
+  }
   #xs_nav ul li a span i {
     font-size: 60px;
   }
@@ -626,6 +632,7 @@ p {
 #seo_page {
   position: relative;
   overflow: hidden;
+  background-color: #000;
 }
 
 #seo_page .container {
@@ -804,6 +811,7 @@ p {
 #small_program_page {
   position: relative;
   overflow: hidden;
+  background-color: #000;
 }
 
 #small_program_page .container {
