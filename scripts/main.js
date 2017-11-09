@@ -52,7 +52,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
     function menuChange(status) {
       var menu = $('.menu'),
         nav = $('#xs_nav');
-      if (status == 'menu') {
+      if (status == 'menu') {//关闭
         $('.menu span').css('background-color', currentColor);
         menu.find('span').eq(0).css('transform', 'translateY(11px)');
         menu.find('span').eq(1).css('transform', 'translateY(-11px)');
@@ -62,7 +62,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
         }, 500, function() {
           $(this).css('z-index', -1)
         });
-      } else {
+      } else {//弹出
         currentColor = $('.menu span').css('background-color');
         $('.menu span').css('background-color', '#333');
         menu.find('span').eq(0).css('transform', 'rotate(45deg)');
@@ -122,6 +122,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
       /*=================================================================
       =                           在线留言                              =
       =================================================================*/
+      //图标动作及弹出
       var popMessage = $('.pop-message');
       $('.weichat').on('mouseenter', function() {
         $(this).find('.animated').addClass('bounce');
@@ -134,6 +135,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
         }, 100);
       });
 
+      //关闭
       $('.pop-message .closeBtn').on('click', function() {
         popMessage.animate({
           opacity: 0
@@ -291,6 +293,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
       =                         商城分页显示                            =
       =================================================================*/
 
+      //mobile
       var mallAllBtn = $('#mall_page .local-nav li'),
         mallAllBox = $('#mall_page .content li'),
         mallCurIndex = 0;
@@ -307,6 +310,27 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
         mallAllBtn.removeClass('active').eq(mallCurIndex).addClass('active');
         mallAllBox.css('display', 'none').eq(mallCurIndex).css('display', 'block');
       }, 5000);
+
+      //pc
+      window.MALLFLAG = false;
+      var lgLocalNav = $('#mall_page .lg-local-nav li'),
+        lgCurIndex = -1;
+      lgLocalNav.on('click', function() {
+        if (!window.MALLFLAG) window.MALLFLAG = true;
+        var index = $(this).index();
+        if (index != lgCurIndex) {
+          lgCurIndex = index;
+          var lgContent = $('#mall_page .lg-content .img-group'),
+            conTxt = $(this).attr('data-content');
+          lgContent.html(' ').removeClass('flipInX');
+          setTimeout(function() {
+            lgContent.html(conTxt).addClass('flipInX');
+          }, 10);
+          lgLocalNav.removeClass('active');
+          $(this).addClass('active');
+        }
+
+      });
 
       /*=================================================================
       =                         图片预加载                              =

@@ -138,10 +138,10 @@
         }
       });
 
-      //设置鼠标滚动监听
-      $('#fullpage').on('mousewheel', function(e) {
+      //鼠标滚动监听事件
+      function handleMouseWheel(e) {
         e.preventDefault();
-        var mousewheelDirection = e.originalEvent.deltaY > 0 ? 'down' : 'up';
+        var mousewheelDirection = e.wheelDelta ? (e.wheelDelta < 0 ? 'down' : 'up') : e.detail > 0 ? 'down' : 'up';
         if (self.allowMoveSlider) {
           if (mousewheelDirection === 'down') {
             $.fn.fullpage.moveSlideRight();
@@ -149,7 +149,15 @@
             $.fn.fullpage.moveSlideLeft();
           }
         }
-      });
+      }
+
+      //设置鼠标滚动监听 兼容Firefox
+      if (typeof window.onmousewheel == 'object') {
+        window.addEventListener('mousewheel', handleMouseWheel);
+      } else if (typeof window.onmousewheel == 'undefined') {
+        window.addEventListener('DOMMouseScroll', handleMouseWheel);
+      }
+
     }
   });
 });
