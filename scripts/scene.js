@@ -158,6 +158,12 @@
         window.addEventListener('DOMMouseScroll', handleMouseWheel);
       }
 
+      //阻止弹出案例详情的滚动冒泡
+      document.querySelector('.pop').addEventListener('mousewheel', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }, false);
+
     }
   });
 });

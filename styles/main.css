@@ -1690,10 +1690,12 @@ p {
   max-width: 1600px;
   margin: 0 auto;
   padding: 50px 10px;
+  text-align:center;
 }
 
 #pop_content img {
   width: 100%;
+  max-width: 100%;
 }
 
 #pop_content h2 {

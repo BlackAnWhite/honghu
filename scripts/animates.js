@@ -49,7 +49,6 @@ define(['jquery'], function($) {
     renderSEO: function() {
       this.seo.addClass('zoomIn').css('opacity', 1);
       this.seoBtn.addClass('fadeInUp').css('opacity', 1);
-      console.log(window.SEOFLAG);
       if (window.SEOFLAG == true) this.seoTitleGroup.addClass('bounceInDown').css('opacity', 1);
     },
     uninstallSEO: function() {

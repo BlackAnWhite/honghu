@@ -32,6 +32,7 @@ require(['jquery', 'fullpage', 'nav', 'scene', 'swiper', 'carousel', 'data', 'an
       tempImg.src = that.data('sourceimg');
       contentimg.html(' ');
       tempImg.onload = function() {
+        this.style.maxWidth = this.width+'px';
         loadingImg.css('display', 'none');
         contentimg.html(this);
         window.caseSwiper = new Swiper('#pop_content', {
